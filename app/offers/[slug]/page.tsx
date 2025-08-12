@@ -9,8 +9,6 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Navbar from "@/components/navbar"
-
-// Import offerData and types from lib file
 import { offerData } from "@/lib/offer-data"
 
 const fadeInUp = {
@@ -27,12 +25,6 @@ const staggerContainer = {
   },
 }
 
-interface PageProps {
-  params: {
-    slug: string
-  }
-}
-
 interface BookingData {
   firstName: string
   lastName: string
@@ -45,7 +37,13 @@ interface BookingData {
   specialRequests: string
 }
 
-export default function OfferDetailPage({ params }: PageProps) {
+interface OfferDetailPageProps {
+  params: {
+    slug: string
+  }
+}
+
+export default function OfferDetailPage({ params }: OfferDetailPageProps) {
   const [showBookingForm, setShowBookingForm] = useState(false)
   const [selectedHotel, setSelectedHotel] = useState<string>("")
   const [bookingData, setBookingData] = useState<BookingData>({
@@ -351,7 +349,7 @@ export default function OfferDetailPage({ params }: PageProps) {
                     onChange={(e) => setBookingData({ ...bookingData, guests: e.target.value })}
                   >
                     {[1, 2, 3, 4, 5, 6].map((num) => (
-                      <option key={num} value={num}>
+                      <option key={num} value={num.toString()}>
                         {num}
                       </option>
                     ))}
@@ -365,7 +363,7 @@ export default function OfferDetailPage({ params }: PageProps) {
                     onChange={(e) => setBookingData({ ...bookingData, rooms: e.target.value })}
                   >
                     {[1, 2, 3, 4].map((num) => (
-                      <option key={num} value={num}>
+                      <option key={num} value={num.toString()}>
                         {num}
                       </option>
                     ))}
