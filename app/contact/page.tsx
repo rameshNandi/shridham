@@ -198,7 +198,7 @@ export default function ContactPage() {
             className="text-base md:text-lg leading-relaxed"
             whileHover={{ scale: 1.01 }}
           >
-            We're here to assist you with reservations, inquiries, and creating unforgettable experiences
+            We're here to assist you with reservations inquiries, and creating unforgettable experiences
           </motion.p>
         </motion.div>
       </section>
