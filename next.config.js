@@ -1,17 +1,25 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      'images.unsplash.com',
-      'www.google.com',
-      'randomuser.me'
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.google.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'randomuser.me',
+      },
     ],
   },
-}
-module.exports = {
-  webpack: (config) => {
-    config.externals = [...config.externals, { playwright: 'commonjs playwright' }]
-    return config
+  webpack: (config, { isServer }) => {
+    config.externals = [...(config.externals || []), { playwright: 'commonjs playwright' }];
+    return config;
   }
 }
-module.exports = nextConfig
+
+module.exports = nextConfig;
