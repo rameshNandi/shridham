@@ -232,3 +232,5 @@ export const exclusiveOfferData: ExclusiveOfferData = {
     ],
   },
 }
+
+export const offerData = exclusiveOfferData
