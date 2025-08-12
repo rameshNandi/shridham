@@ -204,7 +204,8 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Information Cards */}
-      <section className="py-12 md:py-20 bg-gray-50 flex-grow">
+
+      {/* <section className="py-12 md:py-20 bg-gray-50 flex-grow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-12 md:mb-16"
@@ -255,7 +256,7 @@ export default function ContactPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Contact Form and Map */}
       <section className="py-12 md:py-20 bg-white flex-grow">
