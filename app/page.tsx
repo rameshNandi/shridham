@@ -13,8 +13,6 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import ExclusivelyForYou from "@/components/ExclusivelyForYou"
 import GoogleReviewSlider from '@/components/GoogleReviewSlider';
-
-
 import { ClientLogos } from "@/components/client-logos"
 
 const fadeInUp = {
@@ -32,10 +30,10 @@ const staggerContainer = {
 }
 
 const heroImages = [
-  "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
-  "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
-  "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
-  "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+  "/home/pexels-boonkong-boonpeng-442952-1134176.jpg",
+  "/home/pexels-enginakyurt-1579253.jpg",
+  "/home/pexels-pixabay-258154.jpg",
+  "/home/pexels-arabiclogos-453201.jpg",
 ]
 
 export default function HomePage() {
@@ -85,45 +83,6 @@ export default function HomePage() {
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length)
   }
-
-  // const destinations = [
-  //   {
-  //     name: "Mumbai",
-  //     description: "The commercial capital where luxury meets tradition",
-  //     image:
-  //       "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  //     hotels: 3,
-  //     rating: 4.8,
-  //     href: "/destinations/mumbai",
-  //   },
-  //   {
-  //     name: "Rajasthan",
-  //     description: "Royal palaces and desert luxury experiences",
-  //     image:
-  //       "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  //     hotels: 5,
-  //     rating: 4.9,
-  //     href: "/destinations/rajasthan",
-  //   },
-  //   {
-  //     name: "Kerala",
-  //     description: "Backwater serenity and tropical paradise",
-  //     image:
-  //       "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  //     hotels: 2,
-  //     rating: 4.7,
-  //     href: "/destinations/kerala",
-  //   },
-  //   {
-  //     name: "Goa",
-  //     description: "Beach luxury and Portuguese heritage",
-  //     image:
-  //       "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  //     hotels: 4,
-  //     rating: 4.6,
-  //     href: "/destinations/goa",
-  //   },
-  // ]
 
   const offers = [
     {
@@ -178,11 +137,12 @@ export default function HomePage() {
               transition={{ duration: 1 }}
             >
               <Image
-                src={image || "/placeholder.svg"}
+                src={image || "/placeholder.jpg"}
                 alt={`Hero ${index + 1}`}
                 fill
                 className="object-cover"
                 priority={index === 0}
+                unoptimized={image.startsWith('/home/')} // Add this if using local images
               />
             </motion.div>
           ))}
@@ -272,270 +232,181 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Search Section */}
-      {/* <section className="py-12 md:py-16 bg-gray-50">
+      {/* Latest Offers */}
+      <section className="py-12 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
-            className="bg-white rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl p-6 md:p-8"
+            className="text-center mb-8 md:mb-16"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="text-center mb-6 md:mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-[#790f11] mb-2 md:mb-4">FIND YOUR PERFECT STAY</h2>
-              <p className="text-gray-600 text-sm md:text-base">Discover luxury accommodations tailored to your preferences</p>
+            <div className="mb-4 md:mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#790f11]">LATEST OFFERS</h2>
             </div>
+            <p className="text-sm md:text-lg text-gray-600 max-w-3xl mx-auto">
+              Exclusive packages and special rates designed to enhance your luxury experience
+            </p>
+          </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3 md:gap-4">
-              <div className="lg:col-span-2">
-                <label className="block text-sm font-medium text-[#790f11] mb-1 md:mb-2">Search</label>
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 md:w-5 md:h-5" />
-                  <Input
-                    placeholder="Destination, hotel, or experience..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-8 md:pl-10 border-[#790f11]/20 focus:border-[#790f11] text-sm md:text-base"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-[#790f11] mb-1 md:mb-2">Location</label>
-                <Select value={location} onValueChange={setLocation}>
-                  <SelectTrigger className="border-[#790f11]/20 focus:border-[#790f11] text-sm md:text-base">
-                    <SelectValue placeholder="Select" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="mumbai">Mumbai</SelectItem>
-                    <SelectItem value="rajasthan">Rajasthan</SelectItem>
-                    <SelectItem value="kerala">Kerala</SelectItem>
-                    <SelectItem value="goa">Goa</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-[#790f11] mb-1 md:mb-2">Check-in</label>
-                <Input
-                  type="date"
-                  value={checkIn}
-                  onChange={(e) => setCheckIn(e.target.value)}
-                  className="border-[#790f11]/20 focus:border-[#790f11] text-sm md:text-base"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-[#790f11] mb-1 md:mb-2">Check-out</label>
-                <Input
-                  type="date"
-                  value={checkOut}
-                  onChange={(e) => setCheckOut(e.target.value)}
-                  className="border-[#790f11]/20 focus:border-[#790f11] text-sm md:text-base"
-                />
-              </div>
-
-              <div className="flex items-end">
-                <Button
-                  onClick={handleSearch}
-                  className="w-full bg-[#790f11] hover:bg-[#5a0b0d] text-[#cda769] font-semibold py-2 md:py-3 text-sm md:text-base hover:shadow-lg hover:shadow-[#790f11]/20 transition-all duration-300"
-                >
-                  SEARCH
-                </Button>
-              </div>
-            </div>
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {offers.map((offer, index) => (
+              <motion.div key={index} variants={fadeInUp}>
+                <Card className="overflow-hidden group hover:shadow-xl md:hover:shadow-2xl transition-all duration-500 border-0 rounded-xl md:rounded-2xl h-full">
+                  <div className="relative overflow-hidden">
+                    <Image
+                      src={offer.image || "/placeholder.jpg"}
+                      alt={offer.title}
+                      width={400}
+                      height={250}
+                      className="w-full h-40 sm:h-48 object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div
+                      className={`absolute top-3 left-3 ${offer.color} text-white px-2 py-1 text-xs md:text-sm rounded-full font-medium`}
+                    >
+                      {offer.badge}
+                    </div>
+                    <div className="absolute bottom-3 left-3 text-white">
+                      <div className="flex items-center space-x-1 md:space-x-2">
+                        <Calendar className="w-3 h-3 md:w-4 md:h-4" />
+                        <span className="text-xs md:text-sm">Validity: {offer.validity}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <CardContent className="p-4 md:p-6 flex-1 flex flex-col">
+                    <h3 className="text-lg md:text-xl font-bold text-[#790f11] mb-2 md:mb-3">{offer.title}</h3>
+                    <p className="text-gray-600 text-sm md:text-base mb-4 md:mb-6 flex-1 leading-relaxed">{offer.description}</p>
+                    <div className="flex space-x-2 md:space-x-3">
+                      <Link href={offer.href} className="flex-1">
+                        <Button className="w-full bg-[#790f11] hover:bg-[#5a0b0d] text-[#cda769] font-semibold py-2 text-sm md:text-base hover:shadow-lg hover:shadow-[#790f11]/20 transition-all duration-300">
+                          LEARN MORE
+                        </Button>
+                      </Link>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
-      </section> */}
+      </section>
 
-     
-
-      {/* Latest Offers */}
-      <section className="py-12 md:py-20 bg-gray-50">
-  <div className="max-w-7xl mx-auto px-4">
-    <motion.div
-      className="text-center mb-8 md:mb-16"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-    >
-      <div className="mb-4 md:mb-6">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#790f11]">LATEST OFFERS</h2>
-      </div>
-      <p className="text-sm md:text-lg text-gray-600 max-w-3xl mx-auto">
-        Exclusive packages and special rates designed to enhance your luxury experience
-      </p>
-    </motion.div>
-
-    {/* Rest of the code remains the same */}
-    <motion.div
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-      variants={staggerContainer}
-      initial="initial"
-      whileInView="animate"
-      viewport={{ once: true }}
-    >
-      {offers.map((offer, index) => (
-        <motion.div key={index} variants={fadeInUp}>
-          <Card className="overflow-hidden group hover:shadow-xl md:hover:shadow-2xl transition-all duration-500 border-0 rounded-xl md:rounded-2xl h-full">
-            <div className="relative overflow-hidden">
-              <Image
-                src={offer.image || "/placeholder.svg"}
-                alt={offer.title}
-                width={400}
-                height={250}
-                className="w-full h-40 sm:h-48 object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div
-                className={`absolute top-3 left-3 ${offer.color} text-white px-2 py-1 text-xs md:text-sm rounded-full font-medium`}
-              >
-                {offer.badge}
-              </div>
-              <div className="absolute bottom-3 left-3 text-white">
-                <div className="flex items-center space-x-1 md:space-x-2">
-                  <Calendar className="w-3 h-3 md:w-4 md:h-4" />
-                  <span className="text-xs md:text-sm">Validity: {offer.validity}</span>
-                </div>
-              </div>
-            </div>
-            <CardContent className="p-4 md:p-6 flex-1 flex flex-col">
-              <h3 className="text-lg md:text-xl font-bold text-[#790f11] mb-2 md:mb-3">{offer.title}</h3>
-              <p className="text-gray-600 text-sm md:text-base mb-4 md:mb-6 flex-1 leading-relaxed">{offer.description}</p>
-              <div className="flex space-x-2 md:space-x-3">
-                <Link href={offer.href} className="flex-1">
-                  <Button className="w-full bg-[#790f11] hover:bg-[#5a0b0d] text-[#cda769] font-semibold py-2 text-sm md:text-base hover:shadow-lg hover:shadow-[#790f11]/20 transition-all duration-300">
-                    LEARN MORE
-                  </Button>
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-      ))}
-    </motion.div>
-  </div>
-        </section>
-
- {/* Featured Destinations */}
+      {/* Featured Destinations */}
       <ExclusivelyForYou />
 
       {/* Welcome Section */}
-<section className="py-12 md:py-20 bg-white">
-  <div className="max-w-7xl mx-auto px-4">
-    <div className="flex flex-col lg:flex-row gap-8 md:gap-16">
-      {/* Text Content Section - Full width on mobile, left on desktop */}
-      <motion.div
-        className="w-full lg:w-1/2 text-center lg:text-left order-1"
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="flex flex-col items-center lg:items-start">
-          {/* Heading - Always comes first */}
-          <div className="flex items-center mb-4 w-full justify-center lg:justify-start">
-            <Crown className="w-6 h-6 md:w-8 md:h-8 text-[#cda769] mr-2 md:mr-3" />
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#790f11]">WELCOME TO SHRIDHAM</h2>
-          </div>
+      <section className="py-12 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex flex-col lg:flex-row gap-8 md:gap-16">
+            <motion.div
+              className="w-full lg:w-1/2 text-center lg:text-left order-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="flex flex-col items-center lg:items-start">
+                <div className="flex items-center mb-4 w-full justify-center lg:justify-start">
+                  <Crown className="w-6 h-6 md:w-8 md:h-8 text-[#cda769] mr-2 md:mr-3" />
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#790f11]">WELCOME TO SHRIDHAM</h2>
+                </div>
 
-          {/* Image - Only shown on mobile (below lg) */}
-          <div className="lg:hidden w-full relative mt-4 mb-6 order-2">
-            <div className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg md:shadow-xl">
-              <Image
-                src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Luxury Hotel Interior"
-                width={600}
-                height={400}
-                className="w-full h-64 sm:h-80 md:h-96 object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#790f11]/20 to-transparent" />
-            </div>
-            <div className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-white rounded-xl md:rounded-2xl shadow-lg p-3 md:p-4">
-              <div className="text-center">
-                <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#790f11]">25+</div>
-                <div className="text-xs md:text-sm text-gray-600">Years of Excellence</div>
-              </div>
-            </div>
-          </div>
+                <div className="lg:hidden w-full relative mt-4 mb-6 order-2">
+                  <div className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg md:shadow-xl">
+                    <Image
+                      src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                      alt="Luxury Hotel Interior"
+                      width={600}
+                      height={400}
+                      className="w-full h-64 sm:h-80 md:h-96 object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#790f11]/20 to-transparent" />
+                  </div>
+                  <div className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-white rounded-xl md:rounded-2xl shadow-lg p-3 md:p-4">
+                    <div className="text-center">
+                      <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#790f11]">25+</div>
+                      <div className="text-xs md:text-sm text-gray-600">Years of Excellence</div>
+                    </div>
+                  </div>
+                </div>
 
-          {/* Text content */}
-          <div className="order-3 lg:order-2">
-            <p className="text-sm md:text-lg text-gray-600 leading-relaxed mb-6 md:mb-8 max-w-2xl">
-              Experience the epitome of luxury and royal hospitality at Shridham Hotels. Our heritage properties
-              across India offer guests an authentic taste of royal grandeur combined with modern amenities and
-              world-class service.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8 w-full max-w-2xl">
-              <div className="flex items-start space-x-2 md:space-x-3">
-                <div className="w-2 h-2 bg-[#cda769] rounded-full mt-1 md:mt-2"></div>
-                <div>
-                  <h4 className="font-bold text-[#790f11] text-sm md:text-base mb-1">Heritage Properties</h4>
-                  <p className="text-gray-600 text-xs md:text-sm">Authentic palaces and heritage buildings</p>
+                <div className="order-3 lg:order-2">
+                  <p className="text-sm md:text-lg text-gray-600 leading-relaxed mb-6 md:mb-8 max-w-2xl">
+                    Experience the epitome of luxury and royal hospitality at Shridham Hotels. Our heritage properties
+                    across India offer guests an authentic taste of royal grandeur combined with modern amenities and
+                    world-class service.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8 w-full max-w-2xl">
+                    <div className="flex items-start space-x-2 md:space-x-3">
+                      <div className="w-2 h-2 bg-[#cda769] rounded-full mt-1 md:mt-2"></div>
+                      <div>
+                        <h4 className="font-bold text-[#790f11] text-sm md:text-base mb-1">Heritage Properties</h4>
+                        <p className="text-gray-600 text-xs md:text-sm">Authentic palaces and heritage buildings</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-2 md:space-x-3">
+                      <div className="w-2 h-2 bg-[#cda769] rounded-full mt-1 md:mt-2"></div>
+                      <div>
+                        <h4 className="font-bold text-[#790f11] text-sm md:text-base mb-1">Royal Hospitality</h4>
+                        <p className="text-gray-600 text-xs md:text-sm">Personalized service fit for royalty</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-2 md:space-x-3">
+                      <div className="w-2 h-2 bg-[#cda769] rounded-full mt-1 md:mt-2"></div>
+                      <div>
+                        <h4 className="font-bold text-[#790f11] text-sm md:text-base mb-1">Luxury Amenities</h4>
+                        <p className="text-gray-600 text-xs md:text-sm">World-class facilities and services</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-2 md:space-x-3">
+                      <div className="w-2 h-2 bg-[#cda769] rounded-full mt-1 md:mt-2"></div>
+                      <div>
+                        <h4 className="font-bold text-[#790f11] text-sm md:text-base mb-1">Cultural Experiences</h4>
+                        <p className="text-gray-600 text-xs md:text-sm">Authentic local culture and traditions</p>
+                      </div>
+                    </div>
+                  </div>
+                  <Link href="/about" className="w-full lg:w-auto order-4">
+                    <Button className="bg-[#790f11] hover:bg-[#5a0b0d] text-[#cda769] font-semibold px-6 md:px-8 py-2 md:py-3 text-sm md:text-base hover:shadow-lg hover:shadow-[#790f11]/20 transition-all duration-300 w-full lg:w-auto">
+                      DISCOVER OUR STORY
+                    </Button>
+                  </Link>
                 </div>
               </div>
-              <div className="flex items-start space-x-2 md:space-x-3">
-                <div className="w-2 h-2 bg-[#cda769] rounded-full mt-1 md:mt-2"></div>
-                <div>
-                  <h4 className="font-bold text-[#790f11] text-sm md:text-base mb-1">Royal Hospitality</h4>
-                  <p className="text-gray-600 text-xs md:text-sm">Personalized service fit for royalty</p>
-                </div>
+            </motion.div>
+
+            <motion.div
+              className="hidden lg:block w-full lg:w-1/2 relative"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg md:shadow-xl">
+                <Image
+                  src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Luxury Hotel Interior"
+                  width={600}
+                  height={400}
+                  className="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#790f11]/20 to-transparent" />
               </div>
-              <div className="flex items-start space-x-2 md:space-x-3">
-                <div className="w-2 h-2 bg-[#cda769] rounded-full mt-1 md:mt-2"></div>
-                <div>
-                  <h4 className="font-bold text-[#790f11] text-sm md:text-base mb-1">Luxury Amenities</h4>
-                  <p className="text-gray-600 text-xs md:text-sm">World-class facilities and services</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-2 md:space-x-3">
-                <div className="w-2 h-2 bg-[#cda769] rounded-full mt-1 md:mt-2"></div>
-                <div>
-                  <h4 className="font-bold text-[#790f11] text-sm md:text-base mb-1">Cultural Experiences</h4>
-                  <p className="text-gray-600 text-xs md:text-sm">Authentic local culture and traditions</p>
-                </div>
-              </div>
-            </div>
-            <Link href="/about" className="w-full lg:w-auto order-4">
-              <Button className="bg-[#790f11] hover:bg-[#5a0b0d] text-[#cda769] font-semibold px-6 md:px-8 py-2 md:py-3 text-sm md:text-base hover:shadow-lg hover:shadow-[#790f11]/20 transition-all duration-300 w-full lg:w-auto">
-                DISCOVER OUR STORY
-              </Button>
-            </Link>
+            </motion.div>
           </div>
         </div>
-      </motion.div>
+      </section>
 
-      {/* Image Section - Only shown on desktop (lg and above) */}
-      <motion.div
-        className="hidden lg:block w-full lg:w-1/2 relative"
-        initial={{ opacity: 0, x: 50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg md:shadow-xl">
-          <Image
-            src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            alt="Luxury Hotel Interior"
-            width={600}
-            height={400}
-            className="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#790f11]/20 to-transparent" />
-        </div>
-      </motion.div>
-    </div>
-  </div>
-</section>
-
-
- <ClientLogos /> 
-
+      <ClientLogos />
       <GoogleReviewSlider />
-      
-  
       <Footer />
     </div>
   )
