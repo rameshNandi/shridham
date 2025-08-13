@@ -48,14 +48,14 @@ export default function ExclusivelyForYou() {
           },
           {
             id: 4,
-            image: "/images/featured/featured-4.jpg",
+            image: "/place/hotel-booking.jpg",
             heading: "CULTURAL JOURNEYS",
             description: "Immerse yourself in rich cultural experiences and discover .",
             link: "/cultural-journeys",
           },
           {
             id: 5,
-            image: "/images/featured/featured-5.jpg",
+            image: "/place/pic5.webp",
             heading: "ADVENTURE TRAVEL",
             description: "For the thrill-seekers, our adventure packages offer.",
             link: "/adventure-travel",
